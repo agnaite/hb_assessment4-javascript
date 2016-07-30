@@ -61,6 +61,7 @@
       margin-right: 1em;
     }
   </style>
+  <script type="text/javascript" src="jquery-1.3.1.min.js"></script>
 </head>
 <body>
 
@@ -228,6 +229,9 @@
 <script>
   "use strict";
   // code here for above problem
+  $('.tricky-to-find').click(function(){
+    alert('Nice!');
+  });
 </script>
 
 <div class="hint">
@@ -256,6 +260,10 @@
 <script>
   "use strict";
   // put your code here
+  $('img').dblclick(function(){
+    $(this).attr('src', 'IMG_5332.GIF');
+  });
+  
 </script>
 
 <div class="hint">
@@ -280,16 +288,21 @@
   try things like <code>fadeIn</code> or <code>slideDown</code>. For extra points, can you
   make this animate itself happen slowly?</li>
 </ul>
-
+<!-- http://mytrial.typepad.com/.a/6a0147e199a17d970b0153906b3209970b-pi -->
 <fieldset>
-  <img src="http://mytrial.typepad.com/.a/6a0147e199a17d970b0153906b3209970b-pi"
-      id="cute-porcupine-image" style="display: none">
+  <img src="IMG_5332.GIF" id="cute-porcupine-image" style="display: none">
   <input type="button" id="make-a-porcupine" value="I Want a Porcupine!">
 </fieldset>
 
 <script>
   "use strict";
   // put your code here
+  $('#make-a-porcupine').click(function(){
+    setTimeout(function(){
+      $('#cute-porcupine-image').fadeIn(2000).css('display', 'block');
+    }, 1000);
+  });
+
 </script>
 
 <div class="hint">
