@@ -61,7 +61,7 @@
       margin-right: 1em;
     }
   </style>
-  <script type="text/javascript" src="jquery-1.3.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
 
@@ -157,7 +157,6 @@
   // code here for above problem
   document.getElementById('prevent-form-submission-button').addEventListener('click', function(evt){
     evt.preventDefault();
-
     alert('Will not submit: ' + document.getElementById('favorite-color-field').value);
   });
 </script>
@@ -261,7 +260,7 @@
   "use strict";
   // put your code here
   $('img').dblclick(function(){
-    $(this).attr('src', 'IMG_5332.GIF');
+    $(this).attr('src', 'http://s3.amazonaws.com/barkpost-assets/50+GIFs/19.gif');
   });
   
 </script>
@@ -288,9 +287,9 @@
   try things like <code>fadeIn</code> or <code>slideDown</code>. For extra points, can you
   make this animate itself happen slowly?</li>
 </ul>
-<!-- http://mytrial.typepad.com/.a/6a0147e199a17d970b0153906b3209970b-pi -->
+
 <fieldset>
-  <img src="IMG_5332.GIF" id="cute-porcupine-image" style="display: none">
+  <img src="http://mytrial.typepad.com/.a/6a0147e199a17d970b0153906b3209970b-pi" id="cute-porcupine-image" style="display: none">
   <input type="button" id="make-a-porcupine" value="I Want a Porcupine!">
 </fieldset>
 
@@ -383,7 +382,6 @@
   "use strict";
   // put your code here
   var secretNumber = Math.round(Math.random() * 100);
-  console.log(secretNumber);
   
   function playGame() {  
     var guess = prompt("Guess the secret number!");
@@ -419,8 +417,6 @@
 
 
 
-
-
 <h3>Less Annoying Number-Guessing Game</h3>
 <p>
   That was fun! But, wow, all those alerts and prompts are annoying, aren't they?
@@ -447,7 +443,48 @@
 
 <script>
   "use strict";
-  // put your code here
+
+  // on click of the play button, pick a secret number and enable guessing
+  // buttons
+  $('#play-guessing-game-2').click(function(){
+    var secretNumber = Math.round(Math.random() * 100);
+    var guess = 0;
+    
+    $('#number-guessing-msg').html('')
+    $('#number-guessed').attr('disabled', false);
+    $('#try-this-number').attr('disabled', false);
+    $('#play-guessing-game-2').attr('disabled', true);
+
+    // on click of the guess button, check the user's input and provide 
+    // an output message that compares the guess to the secret number
+    $('#try-this-number').click(function(evt){
+      evt.preventDefault();
+    
+      guess = $('#number-guessed').val();
+
+      if (guess < secretNumber) {
+        $('#number-guessing-msg').html('The number is too low. Guess again!');
+        $('#number-guessed').val('');
+    
+      } else if (guess > secretNumber) {
+          $('#number-guessing-msg').html('The number is too high. Guess again!');
+          $('#number-guessed').val('');
+    
+      // if user guess the correct number, show winning message, 
+      // disable guess button, enable play button, and clear the textbox
+      } else {
+          $('#number-guessing-msg').html('☆You win!☆').css('color', 'pink').css(
+          'font-weight', '700');
+        
+          $('#number-guessed').attr('disabled', true);
+          $('#try-this-number').attr('disabled', true);
+          $('#play-guessing-game-2').attr('disabled', false);
+
+          $('#number-guessed').val('');
+      }
+       
+    });
+  });
 
 </script>
 
@@ -562,6 +599,6 @@
 </script>
 
 
-<script src="js-skills.js"></script>
-</body>
+<!-- <script src="js-skills.js"></script>
+ --></body>
 </html>
