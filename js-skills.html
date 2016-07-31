@@ -347,6 +347,11 @@
 <script>
   "use strict";
   // put your code here
+  $("input[type='submit']").click(function(evt){
+    evt.preventDefault();
+
+  $('#agreeable-text').html('I like ' + $('#favorite-food-input').val() + ' too.');
+  });
 </script>
 
 <div class="hint">
@@ -377,6 +382,31 @@
 <script>
   "use strict";
   // put your code here
+  var secretNumber = Math.round(Math.random() * 100);
+  console.log(secretNumber);
+  
+  function playGame() {  
+    var guess = prompt("Guess the secret number!");
+
+    while (true) {
+      if (!isNaN(guess)) {
+        if (guess < secretNumber) {
+          guess = prompt('Number is too low. Guess again!');
+        }
+        else if (guess > secretNumber) {
+          guess = prompt('Number is too high. Guess again!');
+        } else {
+          alert('You got it! The secret number was ' + secretNumber);
+          break;
+        }
+      } else {
+        guess = prompt('Not a number! Guess again.');
+      } 
+    }
+  }
+
+  $('#play-guessing-game').click(playGame);
+  
 </script>
 
 <div class="hint">
@@ -418,6 +448,7 @@
 <script>
   "use strict";
   // put your code here
+
 </script>
 
 
@@ -456,7 +487,42 @@
 
     var PRIME_COLORS = ['orange', 'midnightblue', 'darkgoldenrod', 'green', 'purple'];
 
-  // put the rest of your code here
+  // checks if a number is a prime, returns true if it is, false otherwise
+    function isPrime(num) {
+      for(var i = 2; i < num; i++) {
+          if (num % i ===  0 && i !== num) {
+              return false;
+          }
+      }
+      return true;
+    }
+
+  // takes in n and returns a list of n-number of primes
+  function getPrimes(n) {
+      var primes = [];
+      var num = 2;
+      while (primes.length < n) {
+          if (isPrime(num)) {
+              primes.push(num);
+          }
+          num++;
+      }
+      return primes;
+  }
+
+  // on click of button, loops over a list and creates a box for each number
+  // in the primes list
+  $('#make-prime-boxes').click(function(){
+    var primes = getPrimes(5);
+    console.log(primes);
+    for(var i = 0; i < primes.length; i++) {
+      console.log(i);
+      console.log(primes[i]);
+      $('#prime-box-area').append("<div class='prime-box'>" + primes[i] + "</div>");
+      $('#prime-box-area div:last-child').css('background-color', PRIME_COLORS[i]);
+    }
+  });
+
 </script>
 
 
